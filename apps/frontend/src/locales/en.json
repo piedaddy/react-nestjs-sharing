@@ -1,0 +1,25 @@
+{
+    "translation": {
+        "button": {
+            "back_to_main": "Back to main page",
+            "login": "Log me in"
+        },
+        "personal_information": {
+            "first_name": "First name",
+            "last_name": "Last name",
+            "email": "Email",
+            "password": "Password"
+        },
+        "landing_page": {
+            "welcome": "Welcome to the ",
+            "yayborhood": "Yayborhood",
+            "sharing_caring": "where sharing is caring"
+        },
+        "sign_up": {
+            "sign_up": "Sign up",
+            "sign_up_button": "Sign me up!",
+            "no_account": "Don't have an account? Sign up ",
+            "here": "here"
+        }
+    }
+}

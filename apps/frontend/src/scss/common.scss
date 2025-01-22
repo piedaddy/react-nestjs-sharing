@@ -1,0 +1,9 @@
+.nav_link_text {
+  color: white;
+}
+
+.background-color {
+  &__light-blue {
+    background-color: $light-blue;
+  }
+}

@@ -1,0 +1,42 @@
+.landing_page {
+  display: flex;
+  //   max-width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  width: 100vw;
+
+  &__login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: 100vh;
+  }
+
+  &__side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // background-image: url('../../assets/landing_photo.jpg') repeat 0 0;
+    // background-repeat: no-repeat;
+    // background-size: 100%;
+    background-color: $light-blue;
+    width: 50%;
+    height: 100vh;
+    color: $sky-blue;
+  }
+  .test2 {
+    background-image: url('../../assets/landing_photo.jpg') repeat 0 0;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: pink;
+    // height: 100%;
+    // // background-color: $light-blue;
+    // width: 50%;
+    // color: $sky-blue;
+  }
+
+  img {
+    // height: 50vh;
+  }
+}
