@@ -1,18 +1,28 @@
 import { SyntheticEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ROUTE_PATHNAME } from '@/@types/enumTypes';
 import { useTranslation } from 'react-i18next';
+import { SIGN_UP } from '@/apis/users.apis';
 
 export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const navigate = useNavigate();
 
   const { t } = useTranslation();
 
-  function signUp() {
-    console.log('sign up!', email, password, firstName, lastName);
+  async function signUp() {
+    const newUser = await SIGN_UP({
+      email,
+      password,
+      firstName,
+      lastName,
+    });
+    if (newUser) {
+      navigate(`${ROUTE_PATHNAME.HOME}`);
+    }
   }
 
   function onEmailChange(e: SyntheticEvent) {

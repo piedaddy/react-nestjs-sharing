@@ -19,10 +19,34 @@
   justify-content: space-evenly;
 }
 
+.j-between {
+  justify-content: space-between;
+}
+
 .a-center {
   align-items: center;
 }
 
 .h-100 {
   height: 100vh;
+}
+
+.w-10 {
+  width: 10vw;
+}
+
+.w-20 {
+  width: 20vw;
+}
+
+.w-30 {
+  width: 30vw;
+}
+
+.w-50 {
+  width: 50vw;
+}
+
+.h-2 {
+  height: 2em;
 }

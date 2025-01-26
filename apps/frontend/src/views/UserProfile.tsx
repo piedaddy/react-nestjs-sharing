@@ -7,6 +7,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ROUTE_PATHNAME } from '@/@types/enumTypes';
 
 import gaby from '../../public/L1007983.jpeg';
+import Layout from '@/Layout';
+import { UPDATE } from '@/apis/users.apis';
 
 export default function UserProfile() {
   const initialEmail = useAppSelector((state) => state.user.email);
@@ -32,12 +34,9 @@ export default function UserProfile() {
 
   const editButtonText = isEditMode ? 'Save Changes' : 'Edit Profile';
 
-  function login() {
-    console.log('logging in!', email, password);
-  }
-
   function updateEmail(email: string) {
     console.log('in component onEmailChange', email);
+
     dispatch(updateUserEmail(email));
   }
 
@@ -53,12 +52,14 @@ export default function UserProfile() {
     setIsEditMode(true);
   }
 
-  function saveChanges() {
+  async function saveChanges() {
     setIsEditMode(false);
 
-    if (initialEmail !== email) {
-      updateEmail(email);
-    }
+    // if (initialEmail !== email) {
+    //   updateEmail(email);
+    // }
+
+    const { data } = await UPDATE({ firstName, lastName, id: 1 });
   }
 
   function handleGoToHome() {
@@ -93,7 +94,7 @@ export default function UserProfile() {
   //}
 
   return (
-    <>
+    <Layout>
       <h2>User Profile</h2>
       <div className="flex mg-s j-center ">
         <div className="flex-column a-center">
@@ -173,6 +174,6 @@ export default function UserProfile() {
         </div>
       </div>
       <button onClick={handleGoToHome}>go home</button>
-    </>
+    </Layout>
   );
 }

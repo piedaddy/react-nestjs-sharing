@@ -1,17 +1,27 @@
-import { useState } from 'react';
-// import "./App.scss";
-import Login from './views/Login';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 
-function App() {
-  const [count, setCount] = useState(0);
+import { Provider } from 'react-redux';
+import store from '@/store/store';
+
+import '@/scss/main.scss';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useLocation,
+} from 'react-router-dom';
+
+import Header from '@/views/Header.tsx';
+import routes from '@/router/index.tsx';
+const router = createBrowserRouter(routes);
+
+export default function App() {
+  // const { pathname } = useLocation();
 
   return (
     <>
-      <h1>Welcome to the Yayborhood</h1>
-      <h3>Where we believe sharing is caring</h3>
-      <Login />
+      {/* {pathname !== '/' && <Header />} */}
+      <RouterProvider router={router} />
     </>
   );
 }
-
-export default App;

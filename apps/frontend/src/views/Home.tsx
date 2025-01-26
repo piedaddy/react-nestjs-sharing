@@ -1,3 +1,5 @@
+import Layout from '@/Layout';
+
 export default function Home() {
   const dummyItems = [
     {
@@ -23,15 +25,17 @@ export default function Home() {
   ];
 
   return (
-    <div>
-      <h2>My Items</h2>
+    <Layout>
+      <div>
+        <h2>My Items</h2>
 
-      {dummyItems.map((item) => (
-        <div key={item.id}>
-          <h3>{item.title}</h3>
-          <p>{item.description}</p>
-        </div>
-      ))}
-    </div>
+        {dummyItems.map((item) => (
+          <div key={item.id}>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </Layout>
   );
 }

@@ -1,0 +1,25 @@
+GET http://localhost:3000/users/
+?limit=10
+&page=1
+
+
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "firstName": "Jan",
+    "lastName": "Boros",
+    "email": "jan@gmail.com",
+    "password": "Password123#"
+}
+
+
+PATCH http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "firstName": "Gaby",
+    "lastName": "Wild",
+    "email": "gwild@gmail.com",
+    "password": "Password123#"
+}
