@@ -4,6 +4,9 @@ export enum ROUTE_PATHNAME {
   SIGN_UP = 'sign-up',
   LOGIN = 'login',
   USER_PROFILE = 'user-profile',
+  INBOX = 'inbox',
+  ITEMS = 'items',
+  SEARCH = 'search',
 }
 
 export enum ITEM_TYPE {

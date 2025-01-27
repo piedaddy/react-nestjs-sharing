@@ -16,6 +16,8 @@ const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("./users/user.entity");
 const users_module_1 = require("./users/users.module");
 const auth_module_1 = require("./auth/auth.module");
+const items_module_1 = require("./items/items.module");
+const item_entity_1 = require("./items/item.entity");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -27,7 +29,7 @@ exports.AppModule = AppModule = __decorate([
             }),
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'postgres',
-                entities: [user_entity_1.User],
+                entities: [user_entity_1.User, item_entity_1.Item],
                 port: 5432,
                 username: 'postgres',
                 password: 'gaby',
@@ -37,6 +39,7 @@ exports.AppModule = AppModule = __decorate([
             }),
             users_module_1.UsersModule,
             auth_module_1.AuthModule,
+            items_module_1.ItemsModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

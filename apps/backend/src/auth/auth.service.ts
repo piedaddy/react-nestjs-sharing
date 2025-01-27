@@ -23,7 +23,7 @@ export class AuthService {
     // if found, compare password with hashed password
     //@todo - add password hashing
     if (user && user.password === payload.password) {
-      return true;
+      return user;
     }
 
     return false;

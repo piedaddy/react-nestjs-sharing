@@ -2,23 +2,29 @@ import { SyntheticEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+import { useAppDispatch } from '@/store/hooks';
+import { setUser } from '@/store/features/user/userSlice';
+
 import { LOGIN } from '@/apis/auth.apis';
 
 import { ROUTE_PATHNAME } from '@/@types/enumTypes';
 import { ToastContainer, toast } from 'react-toastify';
 
 import Layout from '@/Layout';
+import { GET_ITEMS_BY_USER_ID } from '@/apis/items.apis';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   async function login() {
     try {
-      const { data } = await LOGIN({ email, password });
-      //@todo - get user data, save it in store - but do this in apis file
+      const data = await LOGIN({ email, password });
+      const userItems = await GET_ITEMS_BY_USER_ID(data);
+      dispatch(setUser({ ...data, items: userItems.data }));
       navigate(`${ROUTE_PATHNAME.USER_PROFILE}`);
     } catch (error) {
       showFailedLoginToast();

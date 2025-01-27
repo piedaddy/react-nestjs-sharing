@@ -5,9 +5,11 @@ import Login from '@/views/Login.tsx';
 import SignUp from '@/views/SignUp.tsx';
 import UserProfile from '@/views/UserProfile.tsx';
 import Home from '@/views/Home.tsx';
-import Header from '@/views/Header.tsx';
+import Inbox from '@/views/Inbox.tsx';
 
 import { ROUTE_PATHNAME } from '@/@types/enumTypes';
+import Items from '@/views/Items';
+import Search from '@/views/Search';
 
 export default [
   {
@@ -30,5 +32,17 @@ export default [
   {
     path: `/${ROUTE_PATHNAME.HOME}`,
     element: <Home />,
+  },
+  {
+    path: `/${ROUTE_PATHNAME.INBOX}`,
+    element: <Inbox />,
+  },
+  {
+    path: `/${ROUTE_PATHNAME.ITEMS}`,
+    element: <Items />,
+  },
+  {
+    path: `/${ROUTE_PATHNAME.SEARCH}`,
+    element: <Search />,
   },
 ];

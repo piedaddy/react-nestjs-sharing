@@ -8,6 +8,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { ItemsModule } from './items/items.module';
+import { Item } from './items/item.entity';
 
 @Module({
   imports: [
@@ -17,7 +19,7 @@ import { AuthModule } from './auth/auth.module';
     //connecting to DB
     TypeOrmModule.forRoot({
       type: 'postgres',
-      entities: [User],
+      entities: [User, Item],
       port: 5432,
       username: 'postgres',
       password: 'gaby',
@@ -30,6 +32,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     UsersModule,
     AuthModule,
+    ItemsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

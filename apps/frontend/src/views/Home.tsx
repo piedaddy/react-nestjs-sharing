@@ -1,40 +1,41 @@
+import { useState } from 'react';
+import { useAppSelector } from '@/store/hooks';
+
 import Layout from '@/Layout';
+import Item from '@/components/items/Item';
+import AddNewModal from '@/components/items/Modal';
 
 export default function Home() {
-  const dummyItems = [
-    {
-      id: '4243',
-      title: 'Vaccumn',
-      description: 'a vaccum',
-      image: '',
-    },
+  const userItems = useAppSelector((state) => state.user.items ?? []);
 
-    {
-      id: '4242',
-      title: 'Dog',
-      description: 'a Dog',
-      image: '',
-    },
+  const [shouldOpenAddNewItemModal, setShouldOpenAddNewItemModal] =
+    useState(false);
 
-    {
-      id: '4241',
-      title: 'Cat',
-      description: 'a Cat',
-      image: '',
-    },
-  ];
+  function openAddNewItemModal() {
+    setShouldOpenAddNewItemModal(true);
+  }
+  function closeAddNewItemModal() {
+    setShouldOpenAddNewItemModal(false);
+  }
 
   return (
     <Layout>
-      <div>
+      <div className="p-xl">
         <h2>My Items</h2>
 
-        {dummyItems.map((item) => (
-          <div key={item.id}>
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-          </div>
+        <button onClick={openAddNewItemModal}>add new item</button>
+
+        {userItems.map((dummyItem) => (
+          <Item item={dummyItem} key={dummyItem.id} />
         ))}
+
+        {shouldOpenAddNewItemModal && (
+          <AddNewModal
+            title="Add New Item"
+            text="add"
+            closeModal={closeAddNewItemModal}
+          />
+        )}
       </div>
     </Layout>
   );

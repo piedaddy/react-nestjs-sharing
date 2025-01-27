@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { reducers } from './reducers';
-import { ItemType } from '@/@types';
 
-export const USER_SLICE_NAME = 'user';
+export const ITEMS_SLICE_NAME = 'items';
 
 export interface UserState {
   id?: string;
@@ -10,7 +8,7 @@ export interface UserState {
   lastName: string;
   email: string;
   neighborhoodId?: string;
-  items?: ItemType[];
+  items?: any;
 }
 
 const initialState: UserState = {
@@ -19,11 +17,10 @@ const initialState: UserState = {
   email: '',
 };
 
-const userSlice = createSlice({
-  name: USER_SLICE_NAME,
+const itemsSlice = createSlice({
+  name: ITEMS_SLICE_NAME,
   initialState,
-  reducers,
+  reducers: {},
 });
 
-export const { setUser } = userSlice.actions;
-export default userSlice.reducer;
+export default itemsSlice.reducer;

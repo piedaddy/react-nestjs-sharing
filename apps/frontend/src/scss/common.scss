@@ -6,4 +6,17 @@
   &__light-blue {
     background-color: $light-blue;
   }
+
+  &__dark-blue {
+    background-color: $dark-blue;
+  }
+}
+
+.button-green {
+  background-color: $green;
+}
+
+.button-green:hover {
+  border-color: $light-blue;
+  background-color: $light-blue;
 }
