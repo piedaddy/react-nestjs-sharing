@@ -4,7 +4,7 @@ import {
   Delete,
   Get,
   Param,
-  ParseIntPipe,
+  Patch,
   Post,
   Query,
 } from '@nestjs/common';
@@ -25,8 +25,13 @@ export class ItemsController {
     return this.itemsService.createItem(newItem);
   }
 
+  @Patch()
+  public async updateItem(@Body() item: CreateItemDto) {
+    return this.itemsService.updateItem(item);
+  }
+
   @Delete()
-  public async deleteItem(@Query('id', ParseIntPipe) itemId: number) {
+  public async deleteItem(@Query('id') itemId: string) {
     return this.itemsService.deleteItem(itemId);
   }
 }

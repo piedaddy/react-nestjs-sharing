@@ -8,11 +8,11 @@ export interface User {
 }
 
 export interface ItemType {
-  id: number;
-  userId: string;
+  id: string;
   name: string;
   description: string;
   imageUrl: string;
   locationId?: string;
   isAvailable: boolean;
+  userId: number | null;
 }

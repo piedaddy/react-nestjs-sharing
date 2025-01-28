@@ -7,6 +7,10 @@ import {
 } from 'class-validator';
 
 export class CreateItemDto {
+  @IsString()
+  @IsNotEmpty()
+  id: string;
+
   @IsInt()
   @IsNotEmpty()
   userId: number;

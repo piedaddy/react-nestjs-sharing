@@ -1,9 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Item {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryColumn({ nullable: false })
+  id: string;
 
   @Column({ type: 'int', nullable: false })
   userId?: number;

@@ -1,47 +1,55 @@
 import { useState } from 'react';
-import { useAppDispatch } from '@/store/hooks';
-import { ADD_NEW_ITEM } from '@/apis/items.apis';
+import { ItemType } from '@/@types';
+import { v4 as uuidv4 } from 'uuid';
 
-const DEFAULT_NEW_ITEM = {
-  name: '',
-  description: '',
-  imageUrl: '',
-  locationId: '',
-  isAvailable: false,
-  userId: '',
-};
+interface ModalProps {
+  title: string;
+  text: string;
+  item?: ItemType;
+  saveButtonText: string;
+  saveModal: (item: ItemType) => Promise<void>;
+  closeModal: () => void;
+}
+
 export default function Modal({
   title,
   text,
+  item,
+  saveButtonText,
+  saveModal,
   closeModal,
-}: {
-  title: string;
-  text: string;
-  closeModal: () => void;
-}) {
-  const [itemName, setItemName] = useState('');
-  const [itemDescription, setItemDescription] = useState('');
-  const [itemImageUrl, setItemImageUrl] = useState('');
-  const dispatch = useAppDispatch();
+}: ModalProps) {
+  const [itemName, setItemName] = useState(item ? item.name : '');
+  const [itemDescription, setItemDescription] = useState(
+    item ? item.description : '',
+  );
+  const [itemImageUrl, setItemImageUrl] = useState(
+    item ? item.description : '',
+  );
+
+  function save() {
+    const itemToSave = item
+      ? {
+          ...item,
+          name: itemName,
+          description: itemDescription,
+          imageUrl: itemImageUrl,
+        }
+      : {
+          id: uuidv4(),
+          name: itemName,
+          description: itemDescription,
+          imageUrl: itemImageUrl,
+          isAvailable: true,
+          userId: 1,
+          locationId: '',
+        };
+
+    saveModal(itemToSave);
+  }
 
   function close() {
     closeModal();
-  }
-
-  async function saveNewItem() {
-    try {
-      const data = await ADD_NEW_ITEM({
-        ...DEFAULT_NEW_ITEM,
-        name: itemName,
-        description: itemDescription,
-        imageUrl: itemImageUrl,
-        userId: 1,
-      });
-      console.log('data after save', data);
-      close();
-    } catch (error) {
-      // showFailedLoginToast();
-    }
   }
 
   return (
@@ -79,7 +87,7 @@ export default function Modal({
               onChange={(e) => setItemImageUrl(e.target.value)}
             />
           </div>
-          <button onClick={saveNewItem}>save new item</button>
+          <button onClick={save}>{saveButtonText}</button>
         </div>
       </div>
     </div>

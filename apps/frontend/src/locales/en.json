@@ -20,6 +20,16 @@
             "sign_up_button": "Sign me up!",
             "no_account": "Don't have an account? Sign up ",
             "here": "here"
+        },
+        "items": {
+            "my_items": "My Items",
+            "add": "Add new item",
+            "delete": "Delete item",
+            "edit": "Edit item",
+            "is_available": "Available to borrow!",
+            "is_not_available": "This isn't available to borrow at the moment ://",
+            "save_new": "Save new item",
+            "save_changes": "Save changes"
         }
     }
 }

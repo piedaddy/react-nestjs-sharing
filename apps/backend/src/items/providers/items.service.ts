@@ -15,8 +15,7 @@ export class ItemsService {
     const item = this.itemsRepository.create(newItem);
 
     try {
-      const data = await this.itemsRepository.save(item);
-      console.log('data', data);
+      return await this.itemsRepository.save(item);
     } catch (error) {
       throw new Error(error);
     }
@@ -35,7 +34,28 @@ export class ItemsService {
     }
   }
 
-  public async deleteItem(itemId: number) {
+  public async updateItem(item: CreateItemDto) {
+    try {
+      const existingItem = await this.itemsRepository.findOneBy({
+        id: item.id,
+      });
+      if (existingItem) {
+        existingItem.id = item.id;
+        existingItem.userId = item.userId;
+        existingItem.name = item.name;
+        existingItem.description = item.description;
+        existingItem.isAvailable = item.isAvailable;
+        existingItem.imageUrl = item.imageUrl;
+        existingItem.locationId = item.locationId;
+
+        return this.itemsRepository.save(existingItem);
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  public async deleteItem(itemId: string) {
     try {
       await this.itemsRepository.delete(itemId);
       return true;

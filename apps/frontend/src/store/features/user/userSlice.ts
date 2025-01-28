@@ -10,13 +10,14 @@ export interface UserState {
   lastName: string;
   email: string;
   neighborhoodId?: string;
-  items?: ItemType[];
+  items: ItemType[];
 }
 
 const initialState: UserState = {
   firstName: '',
   lastName: '',
   email: '',
+  items: [],
 };
 
 const userSlice = createSlice({
@@ -25,5 +26,6 @@ const userSlice = createSlice({
   reducers,
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, addItemToUser, deleteItemFromUser, editUserItem } =
+  userSlice.actions;
 export default userSlice.reducer;
