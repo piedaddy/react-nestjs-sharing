@@ -24,6 +24,7 @@ export default function Login() {
     try {
       const data = await LOGIN({ email, password });
       const userItems = await GET_ITEMS_BY_USER_ID(data);
+      console.log('userItems.data', userItems.data);
       dispatch(setUser({ ...data, items: userItems.data }));
       navigate(`${ROUTE_PATHNAME.USER_PROFILE}`);
     } catch (error) {

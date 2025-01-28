@@ -4,12 +4,15 @@ import { User } from '../user.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { UpdateUserDto } from '../dtos/update-user.dto';
+import { HashingProvider } from 'src/auth/providers/hashing.provider';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    private readonly usersRepository: Repository<User>,
+
+    private readonly hashingProvider: HashingProvider,
   ) {}
 
   public async createUser(createUserDto: CreateUserDto) {
@@ -28,10 +31,12 @@ export class UsersService {
       throw new Error('there is already a user with that email');
     }
     //if user doesnt exist =>
-    let newUser = this.usersRepository.create(createUserDto);
+    let newUser = this.usersRepository.create({
+      ...createUserDto,
+      password: await this.hashingProvider.hashPassword(createUserDto.password),
+    });
     try {
       newUser = await this.usersRepository.save(newUser);
-      console.log('saved');
     } catch (error) {
       console.log('saving new user error', error);
       throw new RequestTimeoutException(`error saving the new user`, {

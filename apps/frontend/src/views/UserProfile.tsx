@@ -9,6 +9,7 @@ import { ROUTE_PATHNAME } from '@/@types/enumTypes';
 import gaby from '../../public/L1007983.jpeg';
 import Layout from '@/Layout';
 import { UPDATE } from '@/apis/users.apis';
+import { GET_ITEMS_BY_USER_ID } from '@/apis/items.apis';
 
 export default function UserProfile() {
   const user = useAppSelector((state) => state.user);
@@ -47,23 +48,17 @@ export default function UserProfile() {
     console.log('in component onEmailChange', email);
   }
 
-  function goToSignUpPage() {
-    console.log('goToSignUpPage');
-  }
   function editProfile() {
     setIsEditMode(true);
   }
 
   async function saveChanges() {
     setIsEditMode(false);
-
-    // if (initialEmail !== email) {
-    //   updateEmail(email);
-    // }
     if (hasMadeChanges()) {
       const { data } = await UPDATE({ firstName, lastName, id: 1 });
-      console.log('data', data);
-      dispatch(setUser(data));
+      const userItems = await GET_ITEMS_BY_USER_ID(data);
+      console.log('userItems.data', userItems.data);
+      dispatch(setUser({ ...data, items: userItems.data }));
     }
   }
 

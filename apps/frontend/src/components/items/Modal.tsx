@@ -10,7 +10,7 @@ interface ModalProps {
   saveModal: (item: ItemType) => Promise<void>;
   closeModal: () => void;
 }
-
+//https://hips.hearstapps.com/hmg-prod/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=0.752xw:1.00xh;0.175xw,0&resize=1200:*
 export default function Modal({
   title,
   text,
@@ -23,9 +23,7 @@ export default function Modal({
   const [itemDescription, setItemDescription] = useState(
     item ? item.description : '',
   );
-  const [itemImageUrl, setItemImageUrl] = useState(
-    item ? item.description : '',
-  );
+  const [itemImageUrl, setItemImageUrl] = useState(item ? item.imageUrl : '');
 
   function save() {
     const itemToSave = item

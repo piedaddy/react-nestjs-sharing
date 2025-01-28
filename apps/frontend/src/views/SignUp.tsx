@@ -21,7 +21,7 @@ export default function SignUp() {
       lastName,
     });
     if (newUser) {
-      navigate(`${ROUTE_PATHNAME.HOME}`);
+      navigate(`/${ROUTE_PATHNAME.HOME}`);
     }
   }
 

@@ -17,9 +17,11 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("../user.entity");
 const typeorm_2 = require("typeorm");
+const hashing_provider_1 = require("../../auth/providers/hashing.provider");
 let UsersService = class UsersService {
-    constructor(usersRepository) {
+    constructor(usersRepository, hashingProvider) {
         this.usersRepository = usersRepository;
+        this.hashingProvider = hashingProvider;
     }
     async createUser(createUserDto) {
         let existingUser = undefined;
@@ -36,10 +38,12 @@ let UsersService = class UsersService {
         if (existingUser) {
             throw new Error('there is already a user with that email');
         }
-        let newUser = this.usersRepository.create(createUserDto);
+        let newUser = this.usersRepository.create({
+            ...createUserDto,
+            password: await this.hashingProvider.hashPassword(createUserDto.password),
+        });
         try {
             newUser = await this.usersRepository.save(newUser);
-            console.log('saved');
         }
         catch (error) {
             console.log('saving new user error', error);
@@ -91,6 +95,7 @@ exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        hashing_provider_1.HashingProvider])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map
