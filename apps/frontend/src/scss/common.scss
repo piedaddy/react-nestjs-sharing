@@ -14,9 +14,70 @@
 
 .button-green {
   background-color: $green;
+
+  &__wide {
+    width: 15em;
+  }
 }
 
 .button-green:hover {
   border-color: $light-blue;
   background-color: $light-blue;
+}
+
+.border-radius-30 {
+  border-radius: 30px;
+}
+
+.form-input {
+  padding: 6px 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $dark-blue;
+  background-color: $sky-blue;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  appearance: none;
+  border-radius: 4px;
+  margin-right: 1em;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  :focus {
+    color: #212529;
+    background-color: $sky-blue;
+    border-color: $green;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem $green;
+  }
+}
+
+.filter-input {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $dark-blue;
+  background-color: $sky-blue;
+  background-clip: padding-box;
+  border: 2px solid $dark-blue;
+  appearance: none;
+  border-radius: 8px;
+  width: 18rem;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  :focus {
+    color: #212529;
+    background-color: $green;
+    border-color: $green;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem $green;
+  }
+}
+
+.icons:hover {
+  stroke: $dark-blue;
+  cursor: pointer;
 }

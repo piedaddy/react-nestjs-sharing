@@ -79,9 +79,9 @@ export default function UserProfile() {
 
   return (
     <Layout>
-      <div className="h-100 background-color__dark-blue p-xl">
-        <h2 className="mt-none">User Profile</h2>
-        <div className="flex mg-s j-center ">
+      <div className="h-100 background-color__sky-blue p-xl">
+        <h1 className="tc-db mt-none">User Profile</h1>
+        <div className="flex j-between background-color__light-blue p-xl border-radius-30 ">
           <div className="flex-column a-center">
             <img
               src={userPhoto}
@@ -98,10 +98,10 @@ export default function UserProfile() {
             <label htmlFor={'imgupload'} className="mt-sm">
               <button
                 id="OpenImgUpload"
-                className="button-green"
+                className="button-green button-green__wide"
                 onClick={openPhotoUpload}
               >
-                Upload New User Photo
+                Upload New Photo
               </button>
             </label>
           </div>
@@ -110,7 +110,13 @@ export default function UserProfile() {
               {!isEditMode && (
                 <>
                   <label htmlFor="name">Name</label> <br />
-                  <input name="name" value={displayName} disabled={true} />
+                  <input
+                    name="name"
+                    value={displayName}
+                    disabled={true}
+                    className="form-input"
+                  />
+                  <br />
                 </>
               )}
               {/* {isEditMode && <input name="name" defaultValue="{displayName}" />} */}
@@ -121,27 +127,34 @@ export default function UserProfile() {
                   <input
                     name="firstName"
                     value={firstName}
+                    className="form-input"
                     onChange={(e) => setFirstName(e.target.value)}
                   />
+                  <br />
                   <br />
                   <label htmlFor="lastName">Last Name</label> <br />
                   <input
                     name="lastName"
                     value={lastName}
+                    className="form-input"
                     onChange={(e) => setLastName(e.target.value)}
                   />
+                  <br />
                 </>
               )}
             </span>
+            <br />
             <span>
               <label htmlFor="">Email</label> <br />
               <input
                 type="text"
                 value={email}
                 disabled={!isEditMode}
+                className="form-input"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </span>
+            <br />
 
             <span>
               <label htmlFor="">Neighborhood</label> <br />
@@ -149,6 +162,7 @@ export default function UserProfile() {
                 type="text"
                 value={location}
                 disabled={!isEditMode}
+                className="form-input"
                 onChange={(e) => setLocation(e.target.value)}
               ></input>
             </span>
@@ -162,9 +176,6 @@ export default function UserProfile() {
             </button>
           </div>
         </div>
-        <button className="button-green" onClick={handleGoToHome}>
-          go home
-        </button>
       </div>
     </Layout>
   );

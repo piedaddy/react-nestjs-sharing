@@ -24,12 +24,19 @@
         "items": {
             "my_items": "My Items",
             "add": "Add new item",
-            "delete": "Delete item",
-            "edit": "Edit item",
+            "delete": "Delete",
+            "edit": "Edit",
             "is_available": "Available to borrow!",
             "is_not_available": "This isn't available to borrow at the moment ://",
             "save_new": "Save new item",
             "save_changes": "Save changes"
+        },
+        "sort": {
+            "sort_asc": "Sort by Name (Asc)",
+            "sort_desc": "Sort by Name (Desc)"
+        },
+        "filter": {
+            "name": "Filter by Name"
         }
     }
 }

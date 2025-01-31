@@ -31,6 +31,11 @@ h1 {
   line-height: 1.1;
 }
 
+h2 {
+  font-size: 2.5em;
+  line-height: 1.1;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -58,4 +63,24 @@ button:focus-visible {
   border-radius: 50%;
   height: 15em;
   width: 15em;
+}
+
+.side-nav {
+  height: 100%;
+  width: 15vw;
+  position: fixed;
+  z-index: 1;
+  // top: 0;
+  left: 0;
+  background-color: $green;
+  overflow-x: hidden;
+  padding-top: 20px;
+  padding-left: 20px;
+  transition: 0.5s;
+}
+
+.layout {
+  //  width: 85vw;
+  // position: fixed;
+  margin-left: 15vw;
 }

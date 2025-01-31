@@ -15,4 +15,6 @@ export interface ItemType {
   locationId?: string;
   isAvailable: boolean;
   userId: number | null;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

@@ -23,6 +23,7 @@ export default function Login() {
   async function login() {
     try {
       const data = await LOGIN({ email, password });
+      console.log('data', data);
       const userItems = await GET_ITEMS_BY_USER_ID(data);
       console.log('userItems.data', userItems.data);
       dispatch(setUser({ ...data, items: userItems.data }));

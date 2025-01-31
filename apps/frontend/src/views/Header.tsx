@@ -10,35 +10,16 @@ export default function Heading() {
   const userFirstName = useAppSelector((state) => state.user.firstName);
 
   return (
-    <div className="flex-column background-color__light-blue">
-      <div className="flex j-between">
-        <h5>hi, {userFirstName}</h5>
-        <Link to={`${ROUTE_PATHNAME.LANDING}`}>
-          <SignoutIcon />
+    <div className="flex j-between a-center ml-header h-3em background-color__light-blue">
+      <h5>hi, {userFirstName}</h5>
+
+      <div className="flex j-end mr-xl">
+        <Link to={`/${ROUTE_PATHNAME.INBOX}`} className="mr-xl">
+          <MessageIcon />
         </Link>
-      </div>
-      <div className="flex j-between">
-        <div className="flex j-between w-50">
-          <Link to={`/${ROUTE_PATHNAME.ITEMS}`}>
-            <p>my items</p>
-          </Link>
-
-          <Link to={`/${ROUTE_PATHNAME.ITEMS}`}>
-            <p>borrowed list</p>
-          </Link>
-
-          <Link to={`/${ROUTE_PATHNAME.SEARCH}`}>
-            <p>check neighborhood</p>
-          </Link>
-        </div>
-        <div className="flex j-between w-10 mr-xl">
-          <Link to={`/${ROUTE_PATHNAME.INBOX}`}>
-            <MessageIcon />
-          </Link>
-          <Link to={`/${ROUTE_PATHNAME.USER_PROFILE}`}>
-            <SettingsIcon />
-          </Link>
-        </div>
+        <Link to={`/${ROUTE_PATHNAME.USER_PROFILE}`}>
+          <SettingsIcon />
+        </Link>
       </div>
     </div>
   );

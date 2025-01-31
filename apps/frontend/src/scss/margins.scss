@@ -46,8 +46,20 @@
   margin-bottom: 4rem;
 }
 
+.ml-sm {
+  margin-left: 1rem;
+}
+
+.ml-md {
+  margin-left: 1.5rem;
+}
+
 .ml-xl {
   margin-left: 2.5rem;
+}
+
+.ml-header {
+  margin-left: 15vw;
 }
 
 .mr-xs {
@@ -56,4 +68,8 @@
 
 .mr-xl {
   margin-right: 2.5rem;
+}
+
+.w-5em {
+  width: 5em;
 }

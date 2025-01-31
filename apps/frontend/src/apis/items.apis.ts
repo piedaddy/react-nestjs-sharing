@@ -26,6 +26,16 @@ export const GET_ITEMS_BY_USER_ID = async (payload: User) => {
   }
 };
 
+export const GET_ITEMS = async (payload: { limit: number; page: number }) => {
+  try {
+    return await axios.get(
+      `${API_URL}/items/?limit=${payload.limit}&page=${payload.page}`,
+    );
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 export const DELETE_ITEM = async (itemId: string) => {
   try {
     return await axios.delete(`${API_URL}/items?id=${itemId}`);

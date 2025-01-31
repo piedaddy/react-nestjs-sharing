@@ -7,12 +7,25 @@
   flex-direction: column;
 }
 
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
 .flex-row {
   flex-direction: row;
 }
 
 .j-center {
   justify-content: center;
+}
+
+.j-end {
+  justify-content: end;
 }
 
 .j-evenly {
@@ -46,11 +59,50 @@
 .w-30 {
   width: 30vw;
 }
+.w-35 {
+  width: 35vw;
+}
 
 .w-50 {
   width: 50vw;
 }
 
+.w-80 {
+  width: 80vw;
+}
+
+.w-100 {
+  width: 100vw;
+}
+
 .h-2 {
   height: 2em;
+}
+
+.h-3em {
+  height: 3em;
+}
+
+.h-20 {
+  height: 20vh;
+}
+
+.h-30 {
+  height: 30vh;
+}
+
+.h-50 {
+  height: 50vh;
+}
+
+.h-100-p {
+  height: 100%;
+}
+
+.z-2 {
+  z-index: 2 !important;
+}
+
+.br-small {
+  border-radius: 4px;
 }

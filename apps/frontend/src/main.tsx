@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import store from '@/store/store';
 
 import '@/scss/main.scss';
+import 'tailwindcss';
+
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from '@/App.tsx';

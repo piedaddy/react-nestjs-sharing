@@ -13,9 +13,17 @@ import { DELETE_ITEM, UPDATE_ITEM } from '@/apis/items.apis';
 
 import { CheckboxIcon } from '@/icons/checkbox.icon';
 import { CircleXIcon } from '@/icons/circleXIcon.icon.tsx';
+import { EditIcon, DeleteIcon } from '@/icons/edit.icon.tsx';
+
 import Modal from '@/components/items/Modal';
 
-export default function Item({ item }: { item: ItemType }) {
+export default function Item({
+  item,
+  isEditable = false,
+}: {
+  item: ItemType;
+  isEditable?: boolean;
+}) {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
@@ -54,8 +62,8 @@ export default function Item({ item }: { item: ItemType }) {
   }
 
   return (
-    <div className="background-color__dark-blue p-xl">
-      <div className="flex-column a-center mg-lg p-md background-color__light-blue">
+    <div className="background-color__dark-blue p-sm mg-s w-35 br-small">
+      <div className="flex-column a-center mg-lg p-md background-color__light-blue br-small">
         <h4>{item.name}</h4>
         <p>{item.description}</p>
         <img src={item.imageUrl} alt={item.name} width="300" height="250" />
@@ -67,10 +75,17 @@ export default function Item({ item }: { item: ItemType }) {
           </p>
           {item.isAvailable ? <CheckboxIcon /> : <CircleXIcon />}
         </div>
-        <div className="flex j-around w-50 mg-lg">
-          <button onClick={openEditModal}> {t('items.edit')}</button>
-          <button onClick={deleteItem}> {t('items.delete')}</button>
-        </div>
+        {isEditable && (
+          <div className="flex j-around w-30 mg-lg">
+            <span onClick={openEditModal}>
+              <EditIcon />
+            </span>
+
+            <span onClick={deleteItem}>
+              <DeleteIcon />
+            </span>
+          </div>
+        )}
 
         {shouldOpenEditItemModal && (
           <Modal

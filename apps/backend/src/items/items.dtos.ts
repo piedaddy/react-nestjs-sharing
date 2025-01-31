@@ -1,5 +1,6 @@
 import {
   IsBoolean,
+  IsDateString,
   IsInt,
   IsNotEmpty,
   IsOptional,
@@ -34,4 +35,14 @@ export class CreateItemDto {
   @IsString()
   @IsOptional()
   locationId?: string;
+}
+
+export class UpdateItemDto extends CreateItemDto {
+  @IsDateString()
+  @IsOptional()
+  createdAt?: Date;
+
+  @IsDateString()
+  @IsOptional()
+  updatedAt?: Date;
 }

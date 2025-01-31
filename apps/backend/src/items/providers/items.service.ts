@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateItemDto } from '../items.dtos';
+import { CreateItemDto, UpdateItemDto } from '../items.dtos';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Item } from '../item.entity';
@@ -34,7 +34,21 @@ export class ItemsService {
     }
   }
 
-  public async updateItem(item: CreateItemDto) {
+  public async getItems(limit: number, page: number) {
+    try {
+      const items = await this.itemsRepository.find({
+        take: limit,
+        skip: page,
+      });
+      if (items) {
+        return items;
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  public async updateItem(item: UpdateItemDto) {
     try {
       const existingItem = await this.itemsRepository.findOneBy({
         id: item.id,

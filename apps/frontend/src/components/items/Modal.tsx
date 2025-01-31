@@ -24,6 +24,9 @@ export default function Modal({
     item ? item.description : '',
   );
   const [itemImageUrl, setItemImageUrl] = useState(item ? item.imageUrl : '');
+  const [isItemAvailable, setIsItemAvailable] = useState(
+    item ? item.isAvailable : true,
+  );
 
   function save() {
     const itemToSave = item
@@ -32,18 +35,23 @@ export default function Modal({
           name: itemName,
           description: itemDescription,
           imageUrl: itemImageUrl,
+          isAvailable: isItemAvailable,
         }
       : {
           id: uuidv4(),
           name: itemName,
           description: itemDescription,
           imageUrl: itemImageUrl,
-          isAvailable: true,
+          isAvailable: isItemAvailable,
           userId: 1,
           locationId: '',
         };
-
+    console.log('itemToSave', itemToSave);
     saveModal(itemToSave);
+  }
+
+  function updateIsItemAvailable() {
+    setIsItemAvailable(!isItemAvailable);
   }
 
   function close() {
@@ -56,35 +64,58 @@ export default function Modal({
         <span className="close" onClick={close}>
           &times;
         </span>
-        <div>
+        <div className="flex-column j-between h-100-p">
           <div>
-            <h3>{title}</h3>
-            <p>{text}</p>
+            <div className="ml-md">
+              <h2 className="mb-md">{title}</h2>
+              <p className="mb-md">{text}</p>
+            </div>
+            <div className="flex wrap j-around">
+              <div className="flex-column">
+                <label htmlFor="itemName">Item Name</label>
+                <input
+                  type="text"
+                  name="itemName"
+                  value={itemName}
+                  className="form-input"
+                  onChange={(e) => setItemName(e.target.value)}
+                />
+              </div>
+              <div className="flex-column">
+                <label htmlFor="itemDescription">Item Description</label>
+                <input
+                  type="text"
+                  name="itemDescription"
+                  value={itemDescription}
+                  className="form-input"
+                  onChange={(e) => setItemDescription(e.target.value)}
+                />
+              </div>
+              <div className="flex-column">
+                <label htmlFor="itemImageUrl">Item Image URL</label>
+                <input
+                  type="text"
+                  name="itemImageUrl"
+                  value={itemImageUrl}
+                  className="form-input w-30"
+                  onChange={(e) => setItemImageUrl(e.target.value)}
+                />
+              </div>
+              <div className="flex-column mt-lg">
+                <label htmlFor="itemImageUrl">
+                  Is Available for borrowing?
+                </label>
+                <input
+                  type="checkbox"
+                  name="isAvailable "
+                  checked={isItemAvailable}
+                  className="h-2"
+                  onChange={updateIsItemAvailable}
+                />
+              </div>
+            </div>
           </div>
-          <div>
-            <label htmlFor="itemName">Item Name</label>
-            <input
-              type="text"
-              name="itemName"
-              value={itemName}
-              onChange={(e) => setItemName(e.target.value)}
-            />
-            <label htmlFor="itemDescription">Item Description</label>
-            <input
-              type="text"
-              name="itemDescription"
-              value={itemDescription}
-              onChange={(e) => setItemDescription(e.target.value)}
-            />
 
-            <label htmlFor="itemImageUrl">Item Image URL</label>
-            <input
-              type="text"
-              name="itemImageUrl"
-              value={itemImageUrl}
-              onChange={(e) => setItemImageUrl(e.target.value)}
-            />
-          </div>
           <button onClick={save}>{saveButtonText}</button>
         </div>
       </div>

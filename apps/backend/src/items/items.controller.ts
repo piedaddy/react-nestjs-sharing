@@ -1,14 +1,16 @@
 import {
   Body,
   Controller,
+  DefaultValuePipe,
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Query,
 } from '@nestjs/common';
-import { CreateItemDto } from './items.dtos';
+import { CreateItemDto, UpdateItemDto } from './items.dtos';
 import { ItemsService } from './providers/items.service';
 
 @Controller('items')
@@ -20,13 +22,22 @@ export class ItemsController {
     return this.itemsService.getItemsByUserId(userId);
   }
 
+  @Get()
+  public async getItems(
+    @Query('limit', ParseIntPipe) limit: number,
+    @Query('page', ParseIntPipe) page: number,
+  ) {
+    console.log('limit', limit);
+    return this.itemsService.getItems(limit, page);
+  }
+
   @Post()
   public async createItem(@Body() newItem: CreateItemDto) {
     return this.itemsService.createItem(newItem);
   }
 
   @Patch()
-  public async updateItem(@Body() item: CreateItemDto) {
+  public async updateItem(@Body() item: UpdateItemDto) {
     return this.itemsService.updateItem(item);
   }
 
